@@ -1,5 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+// we have to defined 'export default' before the function while importing
+import Info from './info.js';
+// when we did not defiend this function is 'export ' then we can import this
+// import {Info} from './info.js'
 
 function App() {
   return (
@@ -15,21 +19,14 @@ function App() {
   );
 }
 
-function Info(){
-  return (
-    <div>
-      <h1>Inventory System</h1>
-      <p>Manage your stuff</p>
-    </div>
-  );
-}
+
 
 function AddItem(){
+   const value = 'python is ';
   return(
- 
       <form>
         <label for='text-form'>Type something</label>
-        <input type='text' id='text-form'/>
+        <input type='text' value={value} id='text-form'/>
       </form>
    
   );
