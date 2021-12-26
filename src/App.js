@@ -11,22 +11,23 @@ function App() {
 
       <Info></Info>
 
-      <AddItem></AddItem>
-      <AddItem></AddItem>
-      <AddItem></AddItem>
+      <AddItem text='python is good' a={3.9}></AddItem>
+
+      <AddItem text='django'></AddItem>
+      <AddItem text='js'></AddItem>
 
     </div>
   );
 }
 
 
-
-function AddItem(){
-   const value = 'python is ';
+function AddItem({text, a}){
+   const value = text;
   return(
       <form>
         <label for='text-form'>Type something</label>
-        <input type='text' value={value} id='text-form'/>
+      <input type='text' value={value} id='text-form' />
+      <p>{a}</p>
       </form>
    
   );
