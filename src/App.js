@@ -7,22 +7,42 @@ import Info from './info.js';
 import { useState } from 'react';
 import SearchBar from './searchBars.js';
 // import { useState } from 'react';
-
+import AddItem from './Additem';
+import ItemDisplay from './Itemdisplay';
 
 
 function App() {
-  const [data, setData] = useState({});
-  const updateData = (searchParams) => {
-    setData(searchParams);
+  const [filter, setFilter] = useState({});
+
+  const [data, setData] = useState({ items: [] });
+
+  const updateFilter = (searchParams) => {
+    setFilter(searchParams);
   }; 
+
+  // const addItemToData = (item) => {
+  //   let currentData = data;
+  //   currentData['items'].push(item);
+  //   setData(currentData)
+  // }
+
+  // or
+
+  const addItemToData = (item) => {
+    let items = data['items'];
+    item.id = items.length;
+    items.push(item);
+    setData({ items: items })
+    console.log(data)
+  }
 
   return (
     <div className="App">
-      <SearchBar callback={updateData}></SearchBar>
-      <p>Name: {'name' in data ? data['name'] : 'no data'}</p>
-      <p>Price: {'price' in data ? data['price'] : 'no data'}</p>
-      <p>Type: {'type' in data ? data['type'] : 'no data'}</p>
-      <p>Brand: { 'brand' in data ? data['brand']: 'no data'}</p>
+      <SearchBar updateSearchParams={updateFilter}></SearchBar>
+      <ItemDisplay items={data['items']}></ItemDisplay>
+      <AddItem AddItem={addItemToData}></AddItem>
+      
+      
 
       {/* <Info></Info>
       <ButtonState/> */}
@@ -32,6 +52,32 @@ function App() {
     </div>
   );
 }
+
+
+
+
+// function App() {
+//   const [data, setData] = useState({});
+//   const updateData = (searchParams) => {
+//     setData(searchParams);
+//   }; 
+
+//   return (
+//     <div className="App">
+//       <SearchBar callback={updateData}></SearchBar>
+//       <p>Name: {'name' in data ? data['name'] : 'no data'}</p>
+//       <p>Price: {'price' in data ? data['price'] : 'no data'}</p>
+//       <p>Type: {'type' in data ? data['type'] : 'no data'}</p>
+//       <p>Brand: { 'brand' in data ? data['brand']: 'no data'}</p>
+
+//       {/* <Info></Info>
+//       <ButtonState/> */}
+
+
+
+//     </div>
+//   );
+// }
 
 
 // function ButtonState() {
