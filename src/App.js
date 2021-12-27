@@ -5,15 +5,27 @@ import Info from './info.js';
 // when we did not defiend this function is 'export ' then we can import this
 // import {Info} from './info.js'
 import { useState } from 'react';
+import SearchBar from './searchBars.js';
+// import { useState } from 'react';
 
 
 
 function App() {
+  const [data, setData] = useState({});
+  const updateData = (searchParams) => {
+    setData(searchParams);
+  }; 
+
   return (
     <div className="App">
+      <SearchBar callback={updateData}></SearchBar>
+      <p>Name: {'name' in data ? data['name'] : 'no data'}</p>
+      <p>Price: {'price' in data ? data['price'] : 'no data'}</p>
+      <p>Type: {'type' in data ? data['type'] : 'no data'}</p>
+      <p>Brand: { 'brand' in data ? data['brand']: 'no data'}</p>
 
-      <Info></Info>
-      <ButtonState/>
+      {/* <Info></Info>
+      <ButtonState/> */}
 
 
 
@@ -22,39 +34,39 @@ function App() {
 }
 
 
-function ButtonState() {
-  const [title, setTitle] = useState('');
-  const [count, setCount] = useState(0);
+// function ButtonState() {
+//   const [title, setTitle] = useState('');
+//   const [count, setCount] = useState(0);
 
-  const UpdateTitleClicked = () => {
-    setTitle(' now we have a title')
-  }
+//   const UpdateTitleClicked = () => {
+//     setTitle(' now we have a title')
+//   }
 
-  const UpdateCountClicked = () => {
-    setCount(count+ 1)
-  }
+//   const UpdateCountClicked = () => {
+//     setCount(count+ 1)
+//   }
 
 
 
-  return (
-    <div>
-      <Data title={title} count={count}></Data>
+//   return (
+//     <div>
+//       <Data title={title} count={count}></Data>
 
-      <button onClick={UpdateTitleClicked}>Update title</button>
-      <button onClick={UpdateCountClicked}>Update count</button>
+//       <button onClick={UpdateTitleClicked}>Update title</button>
+//       <button onClick={UpdateCountClicked}>Update count</button>
       
-    </div>
+//     </div>
 
-  );
-}
+//   );
+// }
 
-function Data({title,count}) {
-  return (
-    <div>
-      <p>Title: {title}</p>
-      <p>Count: { count }</p>
-    </div>
-  )
-}
+// function Data({title,count}) {
+//   return (
+//     <div>
+//       <p>Title: {title}</p>
+//       <p>Count: { count }</p>
+//     </div>
+//   )
+// }
 
 export default App;
