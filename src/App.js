@@ -4,33 +4,57 @@ import './App.css';
 import Info from './info.js';
 // when we did not defiend this function is 'export ' then we can import this
 // import {Info} from './info.js'
+import { useState } from 'react';
+
+
 
 function App() {
   return (
     <div className="App">
 
       <Info></Info>
+      <ButtonState/>
 
-      <AddItem text='python is good' a={3.9}></AddItem>
 
-      <AddItem text='django'></AddItem>
-      <AddItem text='js'></AddItem>
 
     </div>
   );
 }
 
 
-function AddItem({text, a}){
-   const value = text;
-  return(
-      <form>
-        <label for='text-form'>Type something</label>
-      <input type='text' value={value} id='text-form' />
-      <p>{a}</p>
-      </form>
-   
+function ButtonState() {
+  const [title, setTitle] = useState('');
+  const [count, setCount] = useState(0);
+
+  const UpdateTitleClicked = () => {
+    setTitle(' now we have a title')
+  }
+
+  const UpdateCountClicked = () => {
+    setCount(count+ 1)
+  }
+
+
+
+  return (
+    <div>
+      <Data title={title} count={count}></Data>
+
+      <button onClick={UpdateTitleClicked}>Update title</button>
+      <button onClick={UpdateCountClicked}>Update count</button>
+      
+    </div>
+
   );
+}
+
+function Data({title,count}) {
+  return (
+    <div>
+      <p>Title: {title}</p>
+      <p>Count: { count }</p>
+    </div>
+  )
 }
 
 export default App;
